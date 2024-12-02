@@ -1,0 +1,43 @@
+
+import './App.css'
+import { BrowserRouter,Routes, Route } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import Privacy from './pages/Privacy'
+import Introduction from './pages/Introduction'
+import WordOfTheDay from './pages/WordOfTheDay'
+
+import Profile from './pages/Profile'
+import Editor from './pages/Editor'
+import Loader from './components/Loader'
+import Stats from './pages/Stats'
+import Terms from './pages/Terms'
+import Feedback from './pages/Feedback'
+import Guide from './pages/Guide'
+
+function App() {
+  
+
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+            <Route path='landing' element={<LandingPage/>}/>
+            <Route path='privacy' element={<Privacy/>}/>
+            <Route path='introduction' element={<Introduction/>}/>
+            <Route path='wordoftheday' element={<WordOfTheDay/>}/>
+            <Route path='profile' element={<Profile/>}/>
+            <Route path='editor' element={<Editor/>}/>
+            <Route path='loader' element={<Loader/>}/>
+            <Route path='stats' element={<Stats/>}/>
+            <Route path='terms' element={<Terms/>}/>
+            <Route path='feedback' element={<Feedback/>}/>
+            <Route path='guide' element={<Guide/>}/>
+        </Routes>
+      </BrowserRouter>
+
+      
+    </>
+  )
+}
+
+export default App
