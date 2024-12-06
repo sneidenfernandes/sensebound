@@ -84,7 +84,7 @@ export default function PrivacyContent(){
     <h2 className="text-md font-semibold mt-6 mb-2 text-gray-700">Grievances or Questions</h2>
     
     <p className="text-sm text-gray-700">
-    If you have any concerns, questions, or grievances regarding this Privacy Policy, you can reach out by writing to <a href="mailto:sneiden@gmail.com" class="text-blue-500 underline">sneiden@gmail.com</a>.
+    If you have any concerns, questions, or grievances regarding this Privacy Policy, you can reach out by writing to <a href="mailto:sneiden@gmail.com" className="text-blue-500 underline">sneiden@gmail.com</a>.
     </p>
 
     <hr className="my-4 h-0.5 border-t-0 bg-neutral-200" />

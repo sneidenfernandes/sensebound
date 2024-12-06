@@ -13,10 +13,10 @@ import Stats from './pages/Stats'
 import Terms from './pages/Terms'
 import Feedback from './pages/Feedback'
 import Guide from './pages/Guide'
+import UserPage from '.pages/UserPage'
 
 function App() {
   
-
   return (
     <>
       <BrowserRouter>
@@ -32,6 +32,7 @@ function App() {
             <Route path='terms' element={<Terms/>}/>
             <Route path='feedback' element={<Feedback/>}/>
             <Route path='guide' element={<Guide/>}/>
+            <Route path='user' element={<UserPage/>}/>
         </Routes>
       </BrowserRouter>
 

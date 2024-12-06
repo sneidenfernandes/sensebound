@@ -1,14 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import Loader from "./Loader";
 
 export default function Footer(){
+    const navigate = useNavigate();
 
+        function handleHome(){
+            const isLoggedIn = localStorage.getItem('loggedIn')
+            isLoggedIn ? navigate('/profile'): navigate('/landing')
+        }
     return <footer className="flex justify-center flex-col  min-w-full h-[7vh] border-t-[1px] border-black  bg-black lg:bg-slate-50 fixed bottom-0">
                 <div className="flex flex-row pl-[4vw] lg:justify-center">
                     <div className="flex text-xs text-gray-400  lg:text-black">
 
-                        <Link to={'/landing'}>
-                            <div className="mr-3 hover:underline hover:cursor-pointer">Home</div>
-                        </Link>
+                        
+                        <button onClick={handleHome} className="mr-3 hover:underline hover:cursor-pointer">Home</button>
+                        
 
                         <Link to={'/privacy'}>
                             <div className="mr-3 hover:underline hover:cursor-pointer">Privacy</div>

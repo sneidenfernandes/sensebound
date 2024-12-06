@@ -78,7 +78,7 @@ writings.use("/*", async (c,next)=>{
 
 writings.get("/:postId", async (c) => {
     const postId  = c.req.param('postId');
-    console.log(postId)
+   
     
 
     const prisma = new PrismaClient({
@@ -117,6 +117,43 @@ writings.get("/:postId", async (c) => {
 
 
 })
+
+
+writings.get("/user/:username", async (c) => {
+
+    const username = c.req.param("username")
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate());
+
+    const userPosts = await prisma.writings.findMany({
+        where: {
+            user:{
+                username: username
+            }
+        },
+        select:{
+            content: true,
+            user: {
+                select:{
+                    username: true
+                }
+            },
+            date_posted: true,
+            word:{
+                select:{
+                    word: true
+                }
+            }
+
+        }
+    })
+
+    return c.json({
+        "userPosts": userPosts
+    })
+});
 
 
 
@@ -180,7 +217,6 @@ writings.post("/post", async (c)=>{
            
         }
 
-    
     });
 
     return c.json({

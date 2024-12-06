@@ -34,7 +34,8 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
 
             const token = response.data.token
             localStorage.setItem("token", token);
-            localStorage.setItem('user', userInput)
+            localStorage.setItem("user", userInput)
+            localStorage.setItem("loggedIn", "true")
             setLoading(false)
             navigate("/profile")
         

@@ -26,8 +26,9 @@ CREATE TABLE "Writings" (
     "user_id" TEXT NOT NULL,
     "word_id" TEXT NOT NULL,
     "date_posted" TIMESTAMP(3) NOT NULL,
-    "is_public" BOOLEAN NOT NULL,
-    "likes" INTEGER NOT NULL,
+    "content" TEXT NOT NULL,
+    "is_public" BOOLEAN NOT NULL DEFAULT false,
+    "likes" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "Writings_pkey" PRIMARY KEY ("post_id")
 );
@@ -39,7 +40,7 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- AddForeignKey
-ALTER TABLE "Writings" ADD CONSTRAINT "Writings_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Writings" ADD CONSTRAINT "Writings_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Writings" ADD CONSTRAINT "Writings_word_id_fkey" FOREIGN KEY ("word_id") REFERENCES "Word"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -23,7 +23,7 @@ words.post("/post", async (c)=>{
     const body  = await c.req.json();
     console.log(body);
     const promptWord = prompt.safeParse(body)
-    console.log(promptWord);
+    
     
     if(!promptWord.success){
         c.json("INVALID TYPES!")
@@ -33,6 +33,27 @@ words.post("/post", async (c)=>{
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
+
+    const gte = new Date();
+    gte.setHours(0,0,0,0);
+
+    const lt = new Date();
+    lt.setDate(gte.getDate() + 1)
+
+    const checkWord = await prisma.word.findFirst({
+        where:{
+            word: body.word,
+            date_posted: {
+                gte: gte,
+                lt: lt
+            }
+        }
+    })
+
+
+   
+
+    if(!checkWord){
 
     const date  = new Date(Date.now()).toISOString();
 
@@ -46,8 +67,17 @@ words.post("/post", async (c)=>{
 
 
     return c.json({
+        response : true,
         "Word Posted": postedWord
     })
+        
+    }else{
+        return c.json({
+            response: false
+        })
+    }
+
+    
 
 
  

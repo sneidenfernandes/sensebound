@@ -46,8 +46,12 @@ export default function SignUpCard({close, swap,setLoading}: signUpCardInputs){
                         email: emailInput,
                         password_hash: passwordInput
                     });
-                    const token = response.data
+                    const token = response.data.token
+                    console.log(token)
+
+                    localStorage.setItem("user", usernameInput)
                     localStorage.setItem("token", token)
+                    localStorage.setItem("loggedIn", "true")
                     setLoading(false);
                     navigate('/profile')
                   
