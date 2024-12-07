@@ -140,21 +140,24 @@ export default function ProfileNavbar(){
                                 <li>
                                     <div className="block px-4 py-2 hover:bg-gray-300  ">
                                         <Link to={'/landing'}>
-                                        <button onClick={()=>{
+                                        <button className="w-full" onClick={()=>{
                                             localStorage.clear()
                                         }}>
-                                        <div className="flex flex-row justify-between">
-                                            
-                                            Signout
-                                
+                                            <div className="flex flex-row justify-between items-center">
+                                                <span>
+                                                Signout
+                                                </span>
+                                                
+                                    
 
-                                            <div>
-                                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                                </svg>
+                                                <div >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                                    </svg>
+                                                </div>
+                                                
+
                                             </div>
-
-                                        </div>
                                         </button>
     
                                         </Link>

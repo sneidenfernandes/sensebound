@@ -14,7 +14,7 @@ export default function Profile(){
         (
             <div className="w-full h-screen mt-[6vh]  bg-slate-50">
                 <ProfileNavbar />
-                <PostHeader text="Explore"/>
+                <PostHeader text="Explore" profile={true}/>
                 <DisplayEntries path="/writings"/>
                 <Footer/>
             </div>)
