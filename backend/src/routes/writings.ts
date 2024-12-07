@@ -151,7 +151,7 @@ writings.get("/user/:username", async (c) => {
     })
 
     return c.json({
-        "userPosts": userPosts
+        "posts": userPosts
     })
 });
 

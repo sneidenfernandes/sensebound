@@ -5,14 +5,17 @@ import axios from "axios";
 import EntryCard from "./EntryCard";
 import SkeletonList from "../components/SkeletonList"
 
+interface displayEntriesInput {
+    path: string
+}
 
-export default function DisplayEntries(){
+export default function DisplayEntries({path}: displayEntriesInput){
    const [data, setData] = useState([]);
 
 
    useEffect(()=>{
    
-     axios.get(`${BACKEND_URL}/api/v1/writings`,{
+     axios.get(`${BACKEND_URL}/api/v1` + path ,{
         headers:{
             Authorization: "Bearer " + localStorage.getItem("token")
         }

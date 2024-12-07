@@ -4,7 +4,7 @@ import { BrowserRouter,Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import Privacy from './pages/Privacy'
 import Introduction from './pages/Introduction'
-import WordOfTheDay from './pages/WordOfTheDay'
+
 
 import Profile from './pages/Profile'
 import Editor from './pages/Editor'
@@ -13,7 +13,8 @@ import Stats from './pages/Stats'
 import Terms from './pages/Terms'
 import Feedback from './pages/Feedback'
 import Guide from './pages/Guide'
-import UserPage from '.pages/UserPage'
+import UserPage from './pages/UserPage'
+
 
 function App() {
   
@@ -24,7 +25,6 @@ function App() {
             <Route path='landing' element={<LandingPage/>}/>
             <Route path='privacy' element={<Privacy/>}/>
             <Route path='introduction' element={<Introduction/>}/>
-            <Route path='wordoftheday' element={<WordOfTheDay/>}/>
             <Route path='profile' element={<Profile/>}/>
             <Route path='editor' element={<Editor/>}/>
             <Route path='loader' element={<Loader/>}/>
@@ -33,6 +33,7 @@ function App() {
             <Route path='feedback' element={<Feedback/>}/>
             <Route path='guide' element={<Guide/>}/>
             <Route path='user' element={<UserPage/>}/>
+            
         </Routes>
       </BrowserRouter>
 
