@@ -32,7 +32,7 @@ function App() {
             <Route path='terms' element={<Terms/>}/>
             <Route path='feedback' element={<Feedback/>}/>
             <Route path='guide' element={<Guide/>}/>
-            <Route path='user' element={<UserPage/>}/>
+            <Route path='userProfile' element={<UserPage/>}/>
             
         </Routes>
       </BrowserRouter>

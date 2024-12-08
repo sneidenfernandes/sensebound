@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +15,8 @@ export default function ProfileNavbar(){
     const [user,setUser] = useState<string>("");
 
     const [dropdown, setDropdown] = useState<boolean>(false);
+
+    const navigate = useNavigate();
 
 
     const ref = HandleOutsideClick(()=>{
@@ -41,11 +43,11 @@ export default function ProfileNavbar(){
 
             <div className="flex flex-col justify-center mr-[10vw] ">
                         <div className="flex-row justify-between md:flex">
-                            <div className="hidden md:flex md:mr-[5vw] md:flex-col md:justify-center md:border-[1px] md:px-5 md:rounded-lg md:border-black shadow-md">
+                            <div className="hidden md:flex md:mr-[5vw] md:flex-col md:justify-center md:border-[1px] md:px-5 md:rounded-lg md:border-black shadow-md bg-slate-50">
                                 <Link to={"/editor"}>
 
-                                    <div className="flex">
-                                    <   div className="font-semibold mr-[5px]">
+                                    <div >
+                                        < div className="font-semibold mr-[5px]">
                                             Write
                                         </div>
 
@@ -112,7 +114,10 @@ export default function ProfileNavbar(){
                                 </li>
                                 <li>
                                     <div className="block px-4 py-2 hover:bg-gray-300  ">
-                                        <Link to={'/landing'}>
+                                       <button className="w-full" onClick={ ()=>{
+                                            navigate('/userProfile', {state:{user:user}})
+                                       }
+                                       }>
                                         <div className="flex flex-row justify-between">
                                             <div>
                                             My Entries
@@ -129,8 +134,8 @@ export default function ProfileNavbar(){
                                         
 
                                             
-                    
-                                        </Link>
+
+                                        </button>
                                     </div>
 
                                 </li>
@@ -139,9 +144,10 @@ export default function ProfileNavbar(){
                             
                                 <li>
                                     <div className="block px-4 py-2 hover:bg-gray-300  ">
-                                        <Link to={'/landing'}>
+                                       
                                         <button className="w-full" onClick={()=>{
                                             localStorage.clear()
+                                            navigate('/landing')
                                         }}>
                                             <div className="flex flex-row justify-between items-center">
                                                 <span>
@@ -160,7 +166,7 @@ export default function ProfileNavbar(){
                                             </div>
                                         </button>
     
-                                        </Link>
+                                       
                                     </div>
 
                                 </li>

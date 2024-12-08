@@ -7,7 +7,7 @@ interface statComponentInput {
 export default function({stat,value}:statComponentInput){
 
     return (
-        <div className="flex items-center justify-between mt-9 w-full bg-gray-100 px-8 py-3 rounded-lg">
+        <div className="flex items-center justify-between mt-9 w-full bg-gray-100 px-8 py-3 sm:px-3 sm:py-2 rounded-lg">
              
         <div className="flex items-center">
             
@@ -24,7 +24,7 @@ export default function({stat,value}:statComponentInput){
 
         </div>
 
-        <div className="text-lg font-semibold items-center">  
+        <div className=" text-sm lg:text-lg font-semibold items-center">  
             
             <div className="ml-6 text-sm lg:text-md">
                 {value}
