@@ -25,6 +25,9 @@ const writings = new Hono<{
     Variables: Variables
 }>();
 
+
+
+
 // auth middleware 
 writings.use("/*", async (c, next)=>{
     try{

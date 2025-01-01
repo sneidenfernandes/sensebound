@@ -29,7 +29,7 @@ def setWordOfTheDay(word):
     url = 'http://localhost:8787/api/v1/words/post'
     json = {"word": str(word)}
     response = requests.post(url, json=json)
-    
+    return response
     
 
 
@@ -37,8 +37,8 @@ def setWordOfTheDay(word):
 if __name__ == "__main__":
 
     word = getWordOfTheDay()
-    
-    setWordOfTheDay(word)
+    response = setWordOfTheDay(word)
+    print(response)
     
     
 

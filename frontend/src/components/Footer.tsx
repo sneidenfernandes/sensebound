@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import Loader from "./Loader";
+
 
 export default function Footer(){
     const navigate = useNavigate();

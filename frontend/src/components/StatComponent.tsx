@@ -1,7 +1,7 @@
 
 interface statComponentInput {
     stat: string,
-    value: string
+    value: string | number
 }
 
 export default function({stat,value}:statComponentInput){
