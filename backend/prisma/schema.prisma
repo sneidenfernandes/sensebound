@@ -23,6 +23,7 @@ model User {
   bio               String?
   writings          Writings[]
   saves             String[]
+  token             ResetTokens?
 }
 
 
@@ -45,6 +46,13 @@ model Writings {
   content       String
   is_public     Boolean @default(false)
   likes         Int     @default(0)
+}
+
+model ResetTokens {
+  id          Int @id @default(autoincrement())
+  user        User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id     String @unique
+  token       String
 }
 
 

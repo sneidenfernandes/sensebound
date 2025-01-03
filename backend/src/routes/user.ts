@@ -1,9 +1,10 @@
 import { Hono } from "hono";
 
-import { sign, verify} from 'hono/jwt'
+import { jwt, sign, verify} from 'hono/jwt'
 import { signUpInput, email, signInInput } from "senseboundtypes";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
+import { JwtTokenExpired } from "hono/utils/jwt/types";
 
 
 
@@ -140,6 +141,59 @@ user.post('/signin', async (c) => {
 
 });
 
+user.post('/password-reset', async (c)=>{
+
+    const body = await c.req.json()
+    
+
+    const isEmail = email.safeParse(body.email)
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate());
+
+    const user = isEmail.success && (
+        await prisma.user.findUnique({
+            where: {
+                email: body.email
+            }
+        })
+    )
+
+    console.log(user)
+
+    if(!user){
+
+        return c.json({
+            message: "This user does not exist."
+        })
+    }
+
+    const token = await sign(
+        {email: body.email}, 
+        c.env.JWT_SECRET,
+        
+    )
+
+    console.log(token)
+
+
+    
+
+    return c.json({
+        message: "email sent"
+    })
+
+})
+
+
+user.post('/password-reset/:userId/:token', async(c)=>{
+
+    return c.json({
+        message: "password-reset"
+    })
+})
+
 // do not use in production 
 user.delete("/deleteAllUsers", async (c)=>{
 
@@ -157,6 +211,9 @@ user.delete("/deleteAllUsers", async (c)=>{
 
 
 });
+
+
+
 
 
 export default user;
