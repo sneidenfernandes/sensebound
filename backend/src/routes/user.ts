@@ -4,13 +4,16 @@ import { jwt, sign, verify} from 'hono/jwt'
 import { signUpInput, email, signInInput } from "senseboundtypes";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { JwtTokenExpired } from "hono/utils/jwt/types";
+import { Resend } from "resend";
+import emailTemplate from "./emailtemplate";
+
 
 
 
 interface Bindings {
     DATABASE_URL : string
     JWT_SECRET : string
+    FRONTEND_URL: string
 }
 
 const user = new Hono<{
@@ -144,6 +147,8 @@ user.post('/signin', async (c) => {
 user.post('/password-reset', async (c)=>{
 
     const body = await c.req.json()
+
+    const resend = new Resend('re_9dD36BGY_6gbjqR6vtjWz4NUfknhRM6GX')
     
 
     const isEmail = email.safeParse(body.email)
@@ -184,7 +189,17 @@ user.post('/password-reset', async (c)=>{
             token: token
         }
     });
-    
+
+    const emailContent = emailTemplate({frontendUrl:c.env.FRONTEND_URL, userId:user.id, token:token })
+
+   
+
+    const { data, error } = await resend.emails.send({
+        from: 'Sensebound <onboarding@resend.dev>',
+        to: [user.email],
+        subject: 'Sensebound - Password Reset Link',
+        html: String(emailContent)
+      });
 
     return c.json({
         response
@@ -202,13 +217,6 @@ user.post('/password-reset/:userId/:token', async(c)=>{
     const userId = c.req.param("userId");
     const token =  c.req.param("token");
 
-    // model ResetTokens {
-    //     id          Int @id @default(autoincrement())
-    //     user        User @relation(fields: [user_id], references: [id], onDelete: Cascade)
-    //     user_id     String 
-    //     email       String
-    //     token       String
-    //   }
 
     const checkToken = await prisma.resetTokens.findFirst({
         where:{

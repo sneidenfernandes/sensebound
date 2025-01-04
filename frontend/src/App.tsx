@@ -15,6 +15,7 @@ import Feedback from './pages/Feedback'
 import Guide from './pages/Guide'
 import UserPage from './pages/UserPage'
 import { Post } from './pages/Post'
+import ForgotPassword from './pages/ForgotPassword'
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route path='landing' element={<LandingPage/>}/>
+            <Route path='/' element={<LandingPage/>}/>
             <Route path='privacy' element={<Privacy/>}/>
             <Route path='introduction' element={<Introduction/>}/>
             <Route path='profile' element={<Profile/>}/>
@@ -35,6 +36,7 @@ function App() {
             <Route path='guide' element={<Guide/>}/>
             <Route path='userProfile' element={<UserPage/>}/>
             <Route path='post' element={<Post/>}/>
+            <Route path='forgot-password' element={<ForgotPassword/>}/>
             
         </Routes>
       </BrowserRouter>
