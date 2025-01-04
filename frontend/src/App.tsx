@@ -14,6 +14,7 @@ import Terms from './pages/Terms'
 import Feedback from './pages/Feedback'
 import Guide from './pages/Guide'
 import UserPage from './pages/UserPage'
+import { Post } from './pages/Post'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path='feedback' element={<Feedback/>}/>
             <Route path='guide' element={<Guide/>}/>
             <Route path='userProfile' element={<UserPage/>}/>
+            <Route path='post' element={<Post/>}/>
             
         </Routes>
       </BrowserRouter>

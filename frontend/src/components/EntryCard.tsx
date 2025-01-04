@@ -5,6 +5,7 @@ interface EntryCardInputs {
     datePosted: string,
     text: string,
     wordOfTheDay: string,
+
 }
 
 export default function EntryCard({username, datePosted, text, wordOfTheDay}: EntryCardInputs)  {
@@ -61,7 +62,11 @@ export default function EntryCard({username, datePosted, text, wordOfTheDay}: En
             </div>
 
             <div className="flex justify-end mt-[3vh]">
-                <button className="border-[1px] bg-black text-sm md:text-md  text-black text-slate-50 border-black rounded-2xl px-4 py-1 flex" >
+                <button className="border-[1px] bg-black text-sm md:text-md  text-black text-slate-50 border-black rounded-2xl px-4 py-1 flex" onClick={
+                    () => {
+                        navigate("/post", {state: {user: username, date: datePosted, text:text, word: wordOfTheDay}})
+                    }
+                } >
                     {"Read"}
                 </button>
             </div>

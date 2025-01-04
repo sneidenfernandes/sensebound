@@ -23,7 +23,7 @@ model User {
   bio               String?
   writings          Writings[]
   saves             String[]
-  token             ResetTokens?
+  token             ResetTokens[]
 }
 
 
@@ -51,8 +51,11 @@ model Writings {
 model ResetTokens {
   id          Int @id @default(autoincrement())
   user        User @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id     String @unique
+  user_id     String 
+  email       String
   token       String
 }
+
+
 
 

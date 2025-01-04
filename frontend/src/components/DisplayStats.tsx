@@ -22,7 +22,7 @@ export default function DisplayStats(){
         [key: string]: {level: number}
     }
 
-
+    
 
 
     useEffect(()=>{
@@ -75,6 +75,8 @@ export default function DisplayStats(){
                  dateArray.push(trackerObject);
                  
             }
+
+            
 
             setDateList(dateArray)
                                                                                                                                                                                            

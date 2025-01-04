@@ -175,13 +175,19 @@ user.post('/password-reset', async (c)=>{
         
     )
 
-    console.log(token)
-
-
+    
+    
+    const response = await prisma.resetTokens.create({
+        data:{
+            user_id: String(user.id),
+            email: user.email,
+            token: token
+        }
+    });
     
 
     return c.json({
-        message: "email sent"
+        response
     })
 
 })
@@ -189,8 +195,87 @@ user.post('/password-reset', async (c)=>{
 
 user.post('/password-reset/:userId/:token', async(c)=>{
 
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate());
+
+    const userId = c.req.param("userId");
+    const token =  c.req.param("token");
+
+    // model ResetTokens {
+    //     id          Int @id @default(autoincrement())
+    //     user        User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    //     user_id     String 
+    //     email       String
+    //     token       String
+    //   }
+
+    const checkToken = await prisma.resetTokens.findFirst({
+        where:{
+            user_id: userId,
+            token: token
+        }       
+    })
+
+    if(!checkToken){
+
+        return c.json({
+            check: false
+        })
+    }
+
+    const deletedToken = await prisma.resetTokens.deleteMany({
+        where:{
+            token: token
+        }
+    })
+
+    return c.json(
+        {
+            user_id: checkToken.user_id,
+            check: true
+        }
+    )
+
+
+    
+    
+})
+
+user.put("/update-password/:userid", async (c)=>{
+    
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate());
+
+    const userId = c.req.param("userid")
+
+    interface newPassword {
+        password: string
+    }
+
+    const body : newPassword = await c.req.json()
+
+    const update = await prisma.user.update({
+        where:{
+            id: userId
+        },
+        data:{
+            password_hash: body.password
+        }
+    })
+
+    if(!update){
+
+        return c.json(
+            {
+                password: false
+            }
+        )
+    }
+
     return c.json({
-        message: "password-reset"
+        password: true
     })
 })
 
@@ -211,6 +296,21 @@ user.delete("/deleteAllUsers", async (c)=>{
 
 
 });
+
+
+user.delete('/deleteTokens', async (c)=>{
+
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL
+    }).$extends(withAccelerate());
+
+
+    const deleteTokens = await prisma.resetTokens.deleteMany({});
+
+    return c.json({
+        deleteTokens
+    })
+})
 
 
 
