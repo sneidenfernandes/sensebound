@@ -190,7 +190,12 @@ user.post('/password-reset', async (c)=>{
         }
     });
 
-    const emailContent = emailTemplate({frontendUrl:c.env.FRONTEND_URL, userId:user.id, token:token })
+    const  FRONTEND_URL = "http://localhost:5173"
+
+    const emailContent = emailTemplate({frontendUrl: FRONTEND_URL, userId:user.id, token:token })
+
+
+    console.log(c.env.FRONTEND_URL)
 
    
 
@@ -208,13 +213,13 @@ user.post('/password-reset', async (c)=>{
 })
 
 
-user.post('/password-reset/:userId/:token', async(c)=>{
+user.post('/password-reset/:userid/:token', async(c)=>{
 
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
 
-    const userId = c.req.param("userId");
+    const userId = c.req.param("userid");
     const token =  c.req.param("token");
 
 
@@ -263,6 +268,8 @@ user.put("/update-password/:userid", async (c)=>{
     }
 
     const body : newPassword = await c.req.json()
+
+    console.log(body.password)
 
     const update = await prisma.user.update({
         where:{
