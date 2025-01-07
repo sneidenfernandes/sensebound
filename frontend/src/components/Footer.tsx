@@ -35,9 +35,13 @@ export default function Footer(){
                         <div className="text-gray-500"> &#169; Sensebound</div>
 
                     </div>
+
+                    
                     
                   
 
                 </div>
+
+                <p className="text-xs">sneiden fernandes</p>
            </footer>
 }
