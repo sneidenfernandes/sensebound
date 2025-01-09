@@ -27,7 +27,6 @@ export default function Reset(){
 
     return (
         <div>
-
             {verified ? (
                 <UpdatePassword userid={String(userId)}/>
             ) : <Loader/>}

@@ -8,7 +8,7 @@ interface NavlinkInputs{
 export default function NavLink({linkText,label}: NavlinkInputs){
 
     return <>
-             <Link to={linkText}>
+             <Link to={''}>
                 <p className="text-sm font-sans font-roboto ">{label}</p>
              </Link>
            </>
