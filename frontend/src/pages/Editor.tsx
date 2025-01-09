@@ -11,7 +11,7 @@ export default function Editor(){
     
     const [complete, setComplete] = useState(false);
     const [text, setText] = useState("")
-    const [word,setWord] = useState("");
+    const [word,setWord] = useState<string | null>("");
     const currDate = new Date( Date.now() ).toString().slice(4,15) ;
     const username = localStorage.getItem('user');
     const navigate = useNavigate();
@@ -26,18 +26,9 @@ export default function Editor(){
     },[]);
 
 
-    useEffect( ()=>{
-            axios.get(`${BACKEND_URL}/api/v1/words/todayWord`)
-            .then(response => {
-                const word = response.data
-                console.log(word)
-                localStorage.setItem("wordId", word.todaysWord.id)
-                setWord(word.todaysWord.word)
-            
-                
-            })
-            
-    })
+    const wordOfTheDay : string | null = localStorage.getItem("wordOfTheDay")
+
+    setWord(wordOfTheDay)
 
     const submitEntry = async () => {
         axios.post(`${BACKEND_URL}/api/v1/writings/post`,{

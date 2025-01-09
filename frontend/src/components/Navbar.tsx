@@ -7,9 +7,10 @@ import Logo from "./Logo"
 interface LandingNavbarInputs {
     handleSignUpPop: MouseEventHandler<HTMLButtonElement>
     handleSignInPop: MouseEventHandler<HTMLButtonElement>
+    handleWordOfTheDay: MouseEventHandler<HTMLButtonELement>
 }
 
-export default function LandingNavbar({handleSignInPop, handleSignUpPop}: LandingNavbarInputs){
+export default function LandingNavbar({handleSignInPop, handleSignUpPop, handleWordOfTheDay}: LandingNavbarInputs){
 
     return <nav className="h-[9vh] w-screen-full bg-slate-50 border-b-[1px] border-black flex flex-row justify-center">
                     <div className="flex flex-col justify-center">
@@ -20,7 +21,9 @@ export default function LandingNavbar({handleSignInPop, handleSignUpPop}: Landin
                                 <ul className="flex flex-row space-x-4">
                                         
                                         <li className="flex flex-col justify-center hidden md:flex">
-                                            <NavLink linkText="wordoftheday" label="Word of the day"/>
+                                            <button className="text-sm" onClick={handleWordOfTheDay}>
+                                                Word of the day
+                                            </button>
                                         </li>
                                         <li  className="flex flex-col justify-center hidden sm:flex">
                                             <button className="text-sm" onClick={handleSignInPop}>

@@ -147,7 +147,7 @@ export default function ProfileNavbar(){
                                        
                                         <button className="w-full" onClick={()=>{
                                             localStorage.clear()
-                                            navigate('/landing')
+                                            navigate('/')
                                         }}>
                                             <div className="flex flex-row justify-between items-center">
                                                 <span>
