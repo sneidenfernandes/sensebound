@@ -3,7 +3,7 @@ import NavLink from "./NavLink"
 import  { MouseEventHandler } from "react"
 import Logo from "./Logo"
 
-
+// need to comment code properly 
 interface LandingNavbarInputs {
     handleSignUpPop: MouseEventHandler<HTMLButtonElement>
     handleSignInPop: MouseEventHandler<HTMLButtonElement>
