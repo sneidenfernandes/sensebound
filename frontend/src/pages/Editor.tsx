@@ -20,7 +20,7 @@ export default function Editor(){
     useEffect(()=>{
         setTimeout(()=>{
             setComplete(true)
-        }, 10000)
+        }, 100000)
     
 
     },[]);

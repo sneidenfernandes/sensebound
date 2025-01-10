@@ -24,6 +24,9 @@ export default function LandingPage(){
 
     const navigate = useNavigate();
 
+    
+    
+
     useEffect( ()=>{
         axios.get(`${BACKEND_URL}/api/v1/words/todayWord`)
         .then(response => {
@@ -33,6 +36,16 @@ export default function LandingPage(){
         })
         
 },[])
+
+
+        useEffect(()=>{
+            if(loggedIn){
+                navigate('/profile')
+            }
+        }
+            ,[navigate])    
+
+const loggedIn = localStorage.getItem("loggedIn");
     
 
     function handleSignUpPopUp(){
@@ -81,7 +94,7 @@ export default function LandingPage(){
                             </div>
                         </div>
 
-                        <Footer/>
+                        <Footer/>   
 
                         {displaySignUp && <SignUpCard  close={Close} swap={Swap} setLoading={setLoading}/>} 
                         {displaySignIn && <SignInCard  close={Close} swap={Swap} setLoading={setLoading}/>}

@@ -78,9 +78,10 @@ export default function ProfileNavbar(){
 
 
                                 <li className="md:hidden">
+                                <Link to={'/editor'}>
                                     <div className="block px-4 py-2 hover:bg-gray-300  ">
-                                        <Link to={'/editor'}>
-                                        <div className="flex flex-row justify-between">
+                                       
+                                            <div className="flex flex-row justify-between">
                                             <div>
                                             Write
                                             </div>
@@ -90,8 +91,9 @@ export default function ProfileNavbar(){
                                             </div>
 
                                         </div>  
-                                        </Link>
+                                        
                                     </div>
+                                </Link>
 
                                 </li>
                                 <li>

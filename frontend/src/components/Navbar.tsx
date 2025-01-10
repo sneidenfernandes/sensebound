@@ -7,7 +7,7 @@ import Logo from "./Logo"
 interface LandingNavbarInputs {
     handleSignUpPop: MouseEventHandler<HTMLButtonElement>
     handleSignInPop: MouseEventHandler<HTMLButtonElement>
-    handleWordOfTheDay: MouseEventHandler<HTMLButtonELement>
+    handleWordOfTheDay: MouseEventHandler<HTMLButtonElement>
 }
 
 export default function LandingNavbar({handleSignInPop, handleSignUpPop, handleWordOfTheDay}: LandingNavbarInputs){
