@@ -95,11 +95,10 @@ const loggedIn = localStorage.getItem("loggedIn");
                         </div>
 
                         <Footer/>   
-
                         {displaySignUp && <SignUpCard  close={Close} swap={Swap} setLoading={setLoading}/>} 
                         {displaySignIn && <SignInCard  close={Close} swap={Swap} setLoading={setLoading}/>}
                         {displayWord && <WordCard handler={WordHandler}/>}
-                                
+
                     </div>)
             }
 

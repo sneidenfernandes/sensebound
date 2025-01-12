@@ -2,7 +2,6 @@ import { MouseEventHandler, useState } from "react"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
-
 import SimpleLogo from "./SimpleLogo";
 
 
@@ -30,8 +29,7 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
                 passwordInput: passwordInput,
 
             })
-            
-
+ 
             const token = response.data.token
             localStorage.setItem("token", token);
             localStorage.setItem("user", userInput)
@@ -40,7 +38,8 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
             navigate("/profile")
         
         } catch(e){
-
+            setLoading(false)
+            alert('Invalid Email/Username/Password')
         }
     }
 
@@ -73,8 +72,6 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
 
                                         
                                     </div>
-
-                                    
                                    
                                     <div className="font-bold text-xl ">Sign in</div>
                                     
@@ -100,8 +97,7 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
                                 </div>
                                    
                                     
-                                   
-
+                                
 
                                     <button  onClick={sendSignInRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm mt-5 px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Sign in</button>
                                     
@@ -110,11 +106,6 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
                                     </div>
 
                                 </div>
-
-                            
-
-        
-
 
                            </div>
                                 

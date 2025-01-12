@@ -84,8 +84,6 @@ user.post('/signup', async (c) => {
 
 
        
-        
-       
         const newUser = await prisma.user.create({
             data:{
                 email: body.email,
@@ -130,6 +128,8 @@ user.post('/signin', async (c) => {
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
 
+
+    
     
    
     const user = isEmail.success 
@@ -147,12 +147,12 @@ user.post('/signin', async (c) => {
         })
 
     if(!user){
-
-        c.status(404);
+        c.status(400)
         return c.json({
-            "message": "Invalid Credentials."
+            invalidCredentials: true
         })
 
+        throw new Error("Invalid Credentials!")
     }
 
     const token = await sign({
