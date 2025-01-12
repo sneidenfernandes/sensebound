@@ -20,15 +20,17 @@ export default function Editor(){
     useEffect(()=>{
         setTimeout(()=>{
             setComplete(true)
-        }, 100000)
+        }, 600000)
     
 
     },[]);
 
+    useEffect(()=>{
+        const wordOfTheDay : string | null = localStorage.getItem("wordOfTheDay")
+        setWord(wordOfTheDay)
+    },[]);
 
-    const wordOfTheDay : string | null = localStorage.getItem("wordOfTheDay")
-
-    setWord(wordOfTheDay)
+    
 
     const submitEntry = async () => {
         axios.post(`${BACKEND_URL}/api/v1/writings/post`,{

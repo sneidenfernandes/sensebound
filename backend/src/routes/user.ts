@@ -47,9 +47,9 @@ user.post('/signup', async (c) => {
   
     
     if(!success){
-        c.status(411);
+        c.status(400);
         return c.json({
-            "message": "Invalid Inputs!"
+            inputValidationError: true
         })
 
     } 
@@ -62,6 +62,29 @@ user.post('/signup', async (c) => {
 
         const date  = new Date(Date.now()).toISOString();
 
+        const emailExists = await prisma.user.findFirst({
+            where: {
+                email: body.email
+            }
+        })
+
+
+        const usernameExists = await prisma.user.findFirst({
+            where: {
+                username: body.username
+            }
+        })
+
+        if(emailExists || usernameExists){
+
+            return c.json({
+                alreadyExists: true
+            })
+        }
+
+
+       
+        
        
         const newUser = await prisma.user.create({
             data:{

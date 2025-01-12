@@ -10,7 +10,7 @@ export default function PostHeader({text,user}: headerInput){
 
 
     return (
-        <div className="font-bold text-xl pt-[5vh] px-[10vw] md:px-[25vw] lg:px-[30vw] mt-5 bg-slate-50">
+        <div className="font-bold font-sans text-xl pt-[5vh] px-[10vw] md:px-[25vw] lg:px-[30vw] mt-5 bg-slate-50">
          <div className="flex justify-start items-center">
             {user && <UserIcon/>}
 

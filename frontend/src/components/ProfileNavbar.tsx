@@ -34,7 +34,7 @@ export default function ProfileNavbar(){
   
 
     return (
-        <div  className="h-[9vh] fixed top-0 left-0 bg-slate-50 w-full flex border-b-[1px] justify-between">
+        <div  className="h-[9vh] fixed top-0 left-0 bg-slate-50 w-full flex border-b-[1px] justify-between z-50">
             <div className="ml-[5vw] flex flex-col justify-center ">
                 <Logo link={"/profile"}/>
             </div>
@@ -94,6 +94,24 @@ export default function ProfileNavbar(){
                                         
                                     </div>
                                 </Link>
+
+                                </li>
+                                <li>
+                                    <div className="block px-4 py-2 hover:bg-gray-300  ">
+                                        <Link to={'/profile'}>
+                                            <div className="flex flex-row justify-between">
+                                                <div>
+                                                Community Feed
+                                                </div>
+                                                <div>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                                                    </svg>
+                                                </div>
+
+                                            </div>                            
+                                        </Link>
+                                    </div>
 
                                 </li>
                                 <li>
