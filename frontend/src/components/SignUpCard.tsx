@@ -3,6 +3,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import SimpleLogo from "./SimpleLogo";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -36,6 +39,8 @@ export default function SignUpCard({close, swap,setLoading}: signUpCardInputs){
         
 
         const doPasswordsMatch = (passwordInput === confirmPasswordInput);
+
+
         
         if(doPasswordsMatch){
 
@@ -56,9 +61,17 @@ export default function SignUpCard({close, swap,setLoading}: signUpCardInputs){
                     navigate('/profile')
                   
                 } catch(e){
+                    setLoading(false)
+                    toast.error("Error: Enter valid inputs and make sure your email and username hasn't been used before.", {
+                        position: "top-center",
+                        autoClose: 5000, // Closes after 3 seconds
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        theme: "dark",
+                    });
                     
-                    console.log("Error while signing up");
-                    console.log(e);
                 }
                 
 
@@ -66,7 +79,16 @@ export default function SignUpCard({close, swap,setLoading}: signUpCardInputs){
             
          
         } else (
-            console.log("Passwords Do Not Match")
+
+            toast.error("Passwords don't match.", {
+                position: "top-center",
+                autoClose: 5000, // Closes after 3 seconds
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+            })
         )
             
     }
@@ -146,7 +168,9 @@ export default function SignUpCard({close, swap,setLoading}: signUpCardInputs){
 
 
                            </div>
-                                
+                            <div>
+                                <ToastContainer/>
+                            </div>
                         
                         </div>
                         </div>

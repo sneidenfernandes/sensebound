@@ -77,7 +77,7 @@ export default function Editor(){
                                         
                                             <textarea onChange={(e)=>{
                                                     setText(e.target.value)
-                                            }} placeholder="Your deep dive starts here..."   className=" p-5 w-[90vw] h-[60vh] lg:w-[70vw] lg:h-[60vh] border-none focus:border-none text-roboto rounded text-left align-top"/>
+                                            }} placeholder="Your deep dive starts here..."   className=" p-5 w-[90vw] h-[60vh] lg:w-[70vw] lg:h-[60vh] border-none focus:border-none text-roboto rounded-xl text-left align-top"/>
                                        
                                         
                                     </div> 

@@ -24,6 +24,10 @@ export default function LandingPage(){
 
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        localStorage.clear()
+    },[])
+
     
     
 

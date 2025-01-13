@@ -151,9 +151,11 @@ user.post('/signin', async (c) => {
         return c.json({
             invalidCredentials: true
         })
-
-        throw new Error("Invalid Credentials!")
     }
+
+    console.log(user);
+
+    
 
     const token = await sign({
         id: user.id
@@ -161,8 +163,9 @@ user.post('/signin', async (c) => {
     
 
     return c.json({
-        token: token
-       
+        token: token,
+        user: user.username,
+        email: user.email
     })
 
 });
@@ -176,6 +179,14 @@ user.post('/password-reset', async (c)=>{
 
     const isEmail = email.safeParse(body.email)
 
+    
+
+    if(!isEmail.success){
+
+        throw new Error("Invalid Email")
+    }
+ 
+
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
     }).$extends(withAccelerate());
@@ -188,13 +199,11 @@ user.post('/password-reset', async (c)=>{
         })
     )
 
-    console.log(user)
+
 
     if(!user){
 
-        return c.json({
-            message: "This user does not exist."
-        })
+        throw new Error("User does not exist!")
     }
 
     const token = await sign(
@@ -216,9 +225,6 @@ user.post('/password-reset', async (c)=>{
     const  FRONTEND_URL = "http://localhost:5173"
 
     const emailContent = emailTemplate({frontendUrl: FRONTEND_URL, userId:user.id, token:token })
-
-
-    console.log(c.env.FRONTEND_URL)
 
    
 

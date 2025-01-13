@@ -7,13 +7,9 @@ import { useState } from "react";
 
 export default function Profile(){
 
-    const [word,setWord] = useState<string>("Nitrogen");
-    
-    const wordOfTheDay  = localStorage.getItem("wordOfTheDay");
     
     
 
-    
 
     return <>
         (

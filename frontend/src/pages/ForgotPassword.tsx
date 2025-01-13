@@ -1,6 +1,8 @@
 import PlainHeader from "../components/PlainHeader"
 import Footer from "../components/Footer"
-import { useEffect, useState } from "react"
+import { useState } from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +12,7 @@ export default function(){
 
         const [email, setEmail] = useState<string>("");
         const [success, setSucess] = useState<boolean>(false);
-        const [message, setMessage] = useState<string>("")
+        
         
         const navigate = useNavigate();
 
@@ -18,16 +20,34 @@ export default function(){
 
         const sendResetEmail = async () => {
 
-            if(email.length != 0){
-                const resetUrl = BACKEND_URL + "/api/v1/user/password-reset"
-                const response = await axios.post(resetUrl, {
-                email: email
-            })
+            try{
 
-            if(response){
-                setSucess(true)
-            } 
+                if(email.length != 0){
+                    const resetUrl = BACKEND_URL + "/api/v1/user/password-reset"
+                    const response = await axios.post(resetUrl, {
+                    email: email
+                })
+    
+                if(response){
+                    setSucess(true)
+                } 
+                }
+
+            } catch(err){
+
+                            toast.error("Invalid Email!", {
+                                position: "top-center",
+                                autoClose: 5000, // Closes after 3 seconds
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                theme: "dark",
+                            });
+                
             }
+
+            
             
 
 
@@ -46,7 +66,7 @@ export default function(){
                 {!success ? <div>
                     <p className="mb-[1vh] text-md font-normal">Enter your email</p>
                     <div >
-                        <input className="focus:border-black" type="text" onChange={(e)=>{
+                        <input className="focus:border-black rounded mt-[1vh]" type="text" onChange={(e)=>{
                             setEmail(e.target.value)
                         }}/>
                     </div>
@@ -79,6 +99,10 @@ export default function(){
 
                 </div> 
                 <Footer/>
+
+                <div>
+                    <ToastContainer/>
+                </div>
         </div>
     )
 }

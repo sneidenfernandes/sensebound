@@ -3,6 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import SimpleLogo from "./SimpleLogo";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
+
 
 
 
@@ -30,16 +34,25 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
 
             })
  
-            const token = response.data.token
-            localStorage.setItem("token", token);
-            localStorage.setItem("user", userInput)
+          
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("email", response.data.email)
+            localStorage.setItem("user", response.data.user)
             localStorage.setItem("loggedIn", "true")
             setLoading(false)
             navigate("/profile")
         
         } catch(e){
             setLoading(false)
-            alert('Invalid Email/Username/Password')
+            toast.error("Invalid Email/Username/Password", {
+                position: "top-center",
+                autoClose: 5000, // Closes after 3 seconds
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+            });
         }
     }
 
@@ -89,6 +102,9 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
                                             setpasswordInput(e.target.value)
                                         }} placeholder="*********" type="password" id="sign-up-password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "/>
                                         
+                                        <Link to="/forgot-password">
+                                            <p className="text-gray-600 text-xs mt-[1vh] hover:underline">Forgot Password?</p>
+                                        </Link>
                                     </div>
                                       
 
@@ -110,6 +126,10 @@ export default function SignInCard({ close , swap, setLoading}: signCardInputs){
                            </div>
                                 
                         
+                        </div>
+
+                        <div>
+                            <ToastContainer/>
                         </div>
                         </div>
     )
