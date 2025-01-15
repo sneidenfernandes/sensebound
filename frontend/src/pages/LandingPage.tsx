@@ -47,7 +47,7 @@ export default function LandingPage(){
                 navigate('/profile')
             }
         }
-            ,[navigate])    
+        ,[navigate])    
 
 const loggedIn = localStorage.getItem("loggedIn");
     
@@ -91,7 +91,7 @@ const loggedIn = localStorage.getItem("loggedIn");
                         <Navbar handleSignInPop={handleSignInPopUp} handleSignUpPop={handleSignUpPopUp} handleWordOfTheDay={WordHandler}/>
                         <div className="grid ml-[4vw] md:ml-0">
                             <div className="col-span-1">
-                                <LandingQuote handleSignInPopUp={handleSignInPopUp}/>
+                                <LandingQuote handleWord={WordHandler} handleSignInPopUp={handleSignInPopUp}/>
                             </div>
                             <div className="fixed hidden lg:flex left-[65vw] opacity-5 top-[10vh] right-[-50vw]">
                                 <img src={clock}  />

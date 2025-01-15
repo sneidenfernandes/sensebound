@@ -31,7 +31,7 @@ export default function WordCard({handler}: WordCardInputs){
                                         </div>
 
                                     <div className="h-40 flex flex-col justify-center items-center">
-                                                <p className="text-4xl font-anton font-light  mt-3 flex justify-center text-center">
+                                                <p className="text-xl md:text-4xl font-anton font-light  mt-3 flex justify-center text-center">
                                                     {word}
                                                 </p>
                                                 

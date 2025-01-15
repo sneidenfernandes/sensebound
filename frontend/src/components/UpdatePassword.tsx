@@ -29,8 +29,6 @@ export default function UpdatePassword({userid} : UpdatePasswordInputs){
                 setSucess(true)
             } 
             }
-            
-
 
         }        
 

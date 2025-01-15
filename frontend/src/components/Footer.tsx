@@ -8,7 +8,7 @@ export default function Footer(){
             const isLoggedIn = localStorage.getItem('loggedIn')
             isLoggedIn ? navigate('/profile'): navigate('/')
         }
-    return <footer className="flex justify-center flex-col  min-w-full h-[7vh] border-t-[1px] border-black  bg-black lg:bg-slate-50 fixed bottom-0">
+    return <footer className="flex justify-center text-xs lg:text-base flex-col  min-w-full h-[7vh] border-t-[1px] border-black  bg-black lg:bg-slate-50 fixed bottom-0">
                 <div className="flex flex-row pl-[4vw] lg:justify-center">
                     <div className="flex text-xs text-gray-400  lg:text-black">
 

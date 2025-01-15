@@ -15,18 +15,18 @@ export default function LandingNavbar({handleSignInPop, handleSignUpPop, handleW
     return <nav className="h-[9vh] w-screen-full bg-slate-50 border-b-[1px] border-black flex flex-row justify-center">
                     <div className="flex flex-col justify-center">
                         <div className="flex flex-row  min-w-[90vw] md:min-w-[80vw] lg:min-w-[65vw] justify-between">
-                            <Logo link={"/landing"}/>
+                            <Logo link={"/"}/>
                                             
                             <div>
                                 <ul className="flex flex-row space-x-4">
                                         
-                                        <li className="flex flex-col justify-center hidden md:flex">
+                                        <li className="flex flex-col justify-center hidden sm:flex">
                                             <button className="text-sm" onClick={handleWordOfTheDay}>
                                                 Word of the day
                                             </button>
                                         </li>
-                                        <li  className="flex flex-col justify-center hidden sm:flex">
-                                            <button className="text-sm" onClick={handleSignInPop}>
+                                        <li  className="flex flex-col justify-center hidden md:flex">
+                                            <button className="text-xs sm:text-sm" onClick={handleSignInPop}>
                                                 Sign in
                                             </button>
                                         </li>

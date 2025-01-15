@@ -70,7 +70,7 @@ export default function Editor(){
 
                 {!complete  ?  <div className="">
 
-                                    
+                                        
 
 
                                     <div className="flex justify-center pt-[1vh] ">
