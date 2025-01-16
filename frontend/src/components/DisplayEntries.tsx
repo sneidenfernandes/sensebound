@@ -5,6 +5,7 @@ import axios from "axios";
 import EntryCard from "./EntryCard";
 import SkeletonList from "../components/SkeletonList"
 
+
 interface displayEntriesInput {
     path: string
 }
@@ -19,7 +20,6 @@ export default function DisplayEntries({path}: displayEntriesInput){
         headers:{
             Authorization: "Bearer " + localStorage.getItem("token")
         }
-    
      }
      
     )
@@ -38,7 +38,7 @@ export default function DisplayEntries({path}: displayEntriesInput){
 
   
         return (
-            <div className="px-[10vw] md:px-[25vw] lg:px-[30vw] mt-5 bg-slate-50">
+            <div className="px-[10vw] md:px-[25vw] lg:px-[30vw] mt-5  bg-slate-50">
               {
                 data.length !== 0 ? (
                     data.map((item, key) => {

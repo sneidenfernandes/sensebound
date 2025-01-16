@@ -13,7 +13,7 @@ export default function Profile(){
 
     return <>
         (
-            <div className="w-full h-screen mt-[6vh]  bg-slate-50">
+            <div className="w-full h-screen mt-[6vh] bg-slate-50">
                 <ProfileNavbar />       
                 <PostHeader text="Community Feed" />
                 <DisplayEntries path="/writings"/>

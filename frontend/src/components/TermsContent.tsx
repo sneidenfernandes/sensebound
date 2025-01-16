@@ -7,7 +7,7 @@ export default function TermsComponent(){
         
         <div className="pb-3 mb-12 bg-gray-50 text-sm text-gray-800 rounded-lg  px-[10vw] md:px-[25vw] lg:px-[30vw] mt-5  bg-slate-50">
     <p className="mb-4">
-        These Terms of Use are a binding contract between you and Sensebound Inc. (“we,” “us,” “our”). By accessing or using Sensebound’s products and services (“Sensebound”), you agree to these Terms and our Privacy Policy. If you have any questions, please contact <a href="mailto:sneiden@gmail.com" className="text-blue-500 underline">sneiden@gmail.com</a>.
+        These Terms of Use are a binding contract between you and Sensebound Inc. (“we,” “us,” “our”). By accessing or using Sensebound’s products and services (“Sensebound”), you agree to these Terms and our Privacy Policy. If you have any questions, please contact <a href="mailto:sensebound4@gmail.com" className="text-blue-700 font-semibold underline">sensebound4@gmail.com</a>.
     </p>
 
     <hr className="my-4 h-0.5 border-t-0 bg-neutral-200" />

@@ -1,12 +1,15 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
+import { useState } from "react";
 import FullEntryCard from "../components/FullEntryCard";
 
 
 
 export function Post(){
 
+    const [currentPath, setCurrentPath] = useState();
     const location = useLocation();
     const navigate = useNavigate();
+    
 
     return (
         <div className="w-full h-screen  bg-slate-50">
@@ -21,24 +24,15 @@ export function Post(){
             <FullEntryCard username={location.state.user} datePosted={location.state.date} text={location.state.text} wordOfTheDay={location.state.word}/>
 
             </div>
-
-
             <div className="flex justify-center mt-[5vh]">
-            <button className="border-[1px] bg-black text-sm md:text-md  text-black text-slate-50 border-black rounded-2xl px-4 py-1 flex" onClick={()=>{
-                navigate('/userProfile', {state: {user: location.state.user}})
-            }}>
-                {"Go Back to Feed"}
-            </button>
 
             <button className="border-[1px] bg-black ml-[2vw] text-sm md:text-md  text-black text-slate-50 border-black rounded-2xl px-4 py-1 flex" onClick={()=>{
-                navigate('/profile')
+                navigate(-1)
             }}>
-                {"Explore Community Feed"}
+                {"Go Back"}
             </button>
-        </div>
-
             
-            
+            </div>
 
             
         </div>

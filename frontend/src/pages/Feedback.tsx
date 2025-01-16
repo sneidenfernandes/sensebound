@@ -5,7 +5,7 @@ import PlainHeader from "../components/PlainHeader";
 
 export default function Feedback(){
 
-    return <div className="w-full h-screen   bg-slate-50">
+    return <div className="w-full h-screen  bg-slate-50">
         <PlainHeader/>
         <div className="font-bold text-lg pt-[5vh] px-[10vw] md:px-[25vw] lg:px-[30vw] mt-5 bg-slate-50">
          {'Feedback'}
