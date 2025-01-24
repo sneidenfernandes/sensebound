@@ -6,6 +6,8 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Resend } from "resend";
 import emailTemplate from "./emailtemplate";
+import { sha256 } from "hono/utils/crypto";
+
 
 
 
@@ -83,12 +85,17 @@ user.post('/signup', async (c) => {
         }
 
 
-       
+        
+        
+
+        const hashedPassword = await sha256(body.password_hash);
+        
+        
         const newUser = await prisma.user.create({
             data:{
                 email: body.email,
                 username: body.username,
-                password_hash: body.password_hash,
+                password_hash: hashedPassword,
                 join_date: date
             }
         })
@@ -121,7 +128,7 @@ user.post('/signin', async (c) => {
     
     const success = signInInput.safeParse(body);
     
-    const isEmail = email.safeParse(body.user)
+    const isEmail = email.safeParse(body.user);
 
 
     const prisma = new PrismaClient({
@@ -129,20 +136,20 @@ user.post('/signin', async (c) => {
     }).$extends(withAccelerate());
 
 
-    
+    const hashedPassword = await sha256(body.password)
     
    
     const user = isEmail.success 
     ? await prisma.user.findUnique({
         where: {
             email: body.user,
-            password_hash : body.password
+            password_hash : hashedPassword
         }
     })
     :  await prisma.user.findUnique({
             where: {
                 username: body.user,
-                password_hash: body.password
+                password_hash: hashedPassword
             }
         })
 
