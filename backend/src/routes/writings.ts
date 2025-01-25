@@ -27,20 +27,23 @@ const writings = new Hono<{
 
 
 
-
 // auth middleware 
 writings.use("/*", async (c, next)=>{
     try{
+
         const headers =  c.req.header("Authorization") as string | "";
 
+        
+
         const token = headers.split(" ")[1] 
+
+        
         
         const user = await verify(token,c.env.JWT_SECRET);
 
 
         if(user){
             c.set("userId", user.id as string);
-            
             await next();
         }
         else{
@@ -51,7 +54,6 @@ writings.use("/*", async (c, next)=>{
         }
 
 
-        
         
 
     }catch(e){
@@ -66,13 +68,16 @@ writings.use("/*", async (c, next)=>{
 
 // middleware to set word of the day 
 writings.use("/*", async (c,next)=>{
-    const wordResponse = await axios.get(`${c.env.BACKEND_URL}/api/v1/words/todayWord`);
+    
+    const wordResponse = await axios.get(`https://backend.sensebound4.workers.dev/api/v1/words/todayWord`);
+    return c.json({
+        message: wordResponse
+    })
     const wordId = wordResponse.data.todaysWord.id;
     const word = wordResponse.data.todaysWord.word;
-
-    
     c.set("wordId", wordId);
     c.set("wordOfTheDay", word);
+
     await next();
 })
 
@@ -83,7 +88,6 @@ writings.get("/:postId", async (c) => {
     const postId  = c.req.param('postId');
    
     
-
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL
       }).$extends(withAccelerate());
@@ -185,9 +189,13 @@ writings.get("/", async (c) => {
 
 writings.post("/post", async (c)=>{
 
-    const body = await c.req.json();
-    const {success} = writingInput.safeParse(body);
+    
 
+    const body = await c.req.json();
+
+   
+    const {success} = writingInput.safeParse(body);
+   
 
     if(!success){
         c.status(403);
@@ -202,14 +210,17 @@ writings.post("/post", async (c)=>{
         datasourceUrl: c.env.DATABASE_URL
       }).$extends(withAccelerate());
 
+      
+
 
       const date = new Date(Date.now()).toISOString()
 
 
    
-    const authorId = c.get("userId")
-    const wordId = c.get("wordId")
-    const word = c.get("wordOfTheDay")
+    const authorId = c.get("userId");
+    const wordId = c.get("wordId");
+
+
     const writing = await prisma.writings.create({
         data: {
 
